@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<vector<int>> ans;
+    vector<int> set;
+    void findSet(vector<int>& nums, int i, vector<int>& set, int n)
+    {
+        if(i==n)
+        {
+            ans.push_back(set);
+            return;
+        }
+        set.push_back(nums[i]);
+        findSet(nums, i+1, set, n);
+        set.pop_back();
+        findSet(nums, i+1, set, n);
+    }
+    vector<vector<int>> subsets(vector<int>& nums) 
+    {
+        ans.clear();
+        int n=nums.size();   
+        set.clear();
+        findSet(nums, 0, set, n);
+        return ans;
+    }
+};
